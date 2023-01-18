@@ -2,8 +2,9 @@ name: Publish
 
 on:
   push:
-    branches:
-      - main
+# TODO: for testing in my own fork.
+#    branches:
+#      - main
   workflow_dispatch:
 
 permissions:
@@ -20,7 +21,7 @@ env:
   CARGO_TERM_COLOR: always
 
 jobs:
-  publish:
+  translations:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -35,8 +36,15 @@ jobs:
       - name: Install mdbook
         uses: ./.github/workflows/install-mdbook
 
-      - name: Build book
-        run: mdbook build
+      - name: Build course in English
+        run: mdbook build -d book/en
+
+      - name: Build course with all translations
+        run: |
+          for po_file in po/*.po; do
+              MDBOOK_BOOK__LANGUAGE=${po_file:3:-3} \
+              MDBOOK_PREPROCESSOR__GETTEXT__PO_FILE=$po_file \
+              mdbook build -d book/${po_file:3:-3}
 
       - name: Setup Pages
         uses: actions/configure-pages@v2
@@ -44,7 +52,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: 'book'
+          path: book
 
       - name: Deploy to GitHub Pages
         id: deployment

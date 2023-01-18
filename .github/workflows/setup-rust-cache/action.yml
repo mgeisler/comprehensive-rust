@@ -11,3 +11,4 @@ runs:
         workspaces: |
           . -> target
           i18n-helpers -> target
+        cache-on-failure: true  # TODO: for faster iteration in my own fork
