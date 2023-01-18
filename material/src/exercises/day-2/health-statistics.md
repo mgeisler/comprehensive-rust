@@ -1,6 +1,6 @@
 # Health Statistics
 
-{{#include ../../../third_party/rust-on-exercism/health-statistics.md}}
+{{#include ../../../../third_party/rust-on-exercism/health-statistics.md}}
 
 Copy the code below to <https://play.rust-lang.org/> and fill in the missing
 methods:
@@ -9,7 +9,7 @@ methods:
 // TODO: remove this when you're done with your implementation.
 #![allow(unused_variables, dead_code)]
 
-{{#include ../../../third_party/rust-on-exercism/health-statistics.rs}}
+{{#include ../../../../third_party/rust-on-exercism/health-statistics.rs}}
 
 fn main() {
     let bob = User::new(String::from("Bob"), 32, 155.2);

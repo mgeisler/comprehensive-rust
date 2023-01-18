@@ -26,7 +26,7 @@ jobs:
         run: cargo install mdbook-svgbob --version 0.2.1
 
       - name: Test code snippets
-        run: mdbook test
+        run: mdbook test material
 
   cargo:
     runs-on: ubuntu-latest
@@ -66,7 +66,7 @@ jobs:
         run: cargo install --path i18n-helpers --locked
 
       - name: Generate po/messages.pot
-        run: mdbook build -d po
+        run: mdbook build material -d po
         env:
           MDBOOK_OUTPUT: '{"xgettext": {"pot-file": "messages.pot"}}'
 
@@ -74,18 +74,18 @@ jobs:
         run: msgfmt --statistics -o /dev/null po/messages.pot
 
       - name: Expand includes without translation
-        run: mdbook build -d expanded
+        run: mdbook build material -d expanded
         env:
           MDBOOK_OUTPUT: '{"markdown": {}}'
 
       - name: Expand includes with no-op translation
-        run: mdbook build -d no-op
+        run: mdbook build material -d no-op
         env:
           MDBOOK_OUTPUT: '{"markdown": {}}'
           MDBOOK_PREPROCESSOR__GETTEXT__PO_FILE: po/messages.pot
 
       - name: Compare no translation to no-op translation
-        run: diff -r expanded no-op
+        run: diff -r material/expanded material/no-op
 
   translations:
     runs-on: ubuntu-latest
@@ -119,7 +119,7 @@ jobs:
         run: msgfmt --statistics -o /dev/null po/${{ matrix.language }}.po
 
       - name: Build course with ${{ matrix.language }} translation
-        run: mdbook build
+        run: mdbook build material
 
       - name: Test code snippets with ${{ matrix.language }} translation
-        run: mdbook test
+        run: mdbook test material

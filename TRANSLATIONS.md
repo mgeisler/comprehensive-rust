@@ -49,31 +49,33 @@ To extract the original English text and generate a `messages.pot` file, you run
 
 ```shell
 $ MDBOOK_OUTPUT='{"xgettext": {"pot-file": "messages.pot"}}' \
-  mdbook build -d po
+  mdbook build material -d po
 ```
 
-You will find the generated POT file as `po/messages.pot`.
+You will find the generated POT file as `material/po/messages.pot`.
 
 ### Initialize a New Translation
 
-To start a new translation, first generate the `po/messages.pot` file. Then use
-`msginit` to create a `xx.po` file for the fictional `xx` language:
+To start a new translation, first generate the
+`material/po/messages.pot` file. Then use `msginit` to create a
+`xx.po` file for the fictional `xx` language:
 
 ```shell
-$ msginit -i po/messages.pot -l xx -o po/xx.po
+$ msginit -i material/po/messages.pot -l xx -o po/xx.po
 ```
 
-You can also simply copy `po/messages.pot` to `po/xx.po`. Then update the file
-header (the first entry with `msgid ""`) to the correct language.
+You can also simply copy `material/po/messages.pot` to `po/xx.po`.
+Then update the file header (the first entry with `msgid ""`) to the
+correct language.
 
 ### Updating an Existing Translation
 
-As the English text changes, translations gradually become outdated. To update
-the `po/xx.po` file with new messages, first extract the English text into a
-`po/messages.pot` template file. Then run
+As the English text changes, translations gradually become outdated.
+To update the `po/xx.po` file with new messages, first extract the
+English text into a `material/po/messages.pot` template file. Then run
 
 ```shell
-$ msgmerge --update po/xx.po po/messages.pot
+$ msgmerge --update po/xx.po material/po/messages.pot
 ```
 
 Unchanged messages will stay intact, deleted messages are marked as old, and
@@ -92,25 +94,27 @@ To use the `po/xx.po` file for your output, run the following command:
 
 ```shell
 $ MDBOOK_BOOK__LANGUAGE='xx' \
-  MDBOOK_PREPROCESSOR__GETTEXT__PO_FILE='po/xx.po' \
+  MDBOOK_PREPROCESSOR__GETTEXT__PO_FILE='../po/xx.po' \
   MDBOOK_PREPROCESSOR__GETTEXT__RENDERERS='["html"]' \
   MDBOOK_PREPROCESSOR__GETTEXT__BEFORE='["svgbob"]' \
-  mdbook build -d book/xx
+  mdbook build material -d book/xx
 ```
 
-This will update the book's language to `xx`, it will make the `mdbook-gettext`
-preprocessor become active and tell it to use the `po/xx.po` file, and finally
-it will redirect the output to `book/xx`.
+This will update the book's language to `xx`, it will make the
+`mdbook-gettext` preprocessor become active and tell it to use the
+`../po/xx.po` file, and finally it will redirect the output to
+`book/xx`.
 
 ## Serving a Translation
 
-Like normal, you can use `mdbook serve` to view your translation as you work on
-it. You use the same command as with `mdbook build` above, but additionally
-we'll tell `mdbook` to watch the `po/` directory for changes:
+Like normal, you can use `mdbook serve material` to view your
+translation as you work on it. You use the same command as with
+`mdbook build material` above, but additionally we'll tell `mdbook` to
+watch the `po/` directory for changes:
 
 ```shell
 $ MDBOOK_BOOK__LANGUAGE=xx \
-  MDBOOK_PREPROCESSOR__GETTEXT__PO_FILE=po/xx.po
+  MDBOOK_PREPROCESSOR__GETTEXT__PO_FILE=../po/xx.po
   MDBOOK_BUILD__EXTRA_WATCH_DIRS='["po"]'
-  mdbook serve -d book/xx
+  mdbook serve material -d book/xx
 ```

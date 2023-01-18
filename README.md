@@ -34,18 +34,19 @@ $ cargo install mdbook-svgbob
 Then run
 
 ```shell
-$ mdbook test
+$ mdbook test material
 ```
 
 to test all included Rust snippets. Run
 
 ```shell
-$ mdbook serve
+$ mdbook serve material
 ```
 
-to start a web server with the course. You'll find the content on
-<http://localhost:3000>. You can use `mdbook build` to create a static version
-of the course in the `book/` directory.
+to start a web server with the course material. You'll find the
+content on <http://localhost:3000>. You can use `mdbook build
+material` to create a static version of the course in the
+`material/book/` directory.
 
 ## Contact
 
