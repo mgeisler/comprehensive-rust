@@ -31,6 +31,9 @@ jobs:
   cargo:
     runs-on: ubuntu-latest
     steps:
+      - name: List installed Cargo binaries
+        run: ls ~/.cargo/bin
+
       - name: Checkout
         uses: actions/checkout@v3
 
