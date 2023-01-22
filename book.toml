@@ -30,6 +30,7 @@ class = "bob"
 
 [output.html]
 curly-quotes = true
+input-404 = "404.md"
 additional-js = ["ga4.js", "speaker-notes.js"]
 additional-css = ["svgbob.css", "speaker-notes.css"]
 site-url = "/comprehensive-rust/"

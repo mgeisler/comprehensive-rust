@@ -36,8 +36,13 @@ jobs:
       - name: Install mdbook
         uses: ./.github/workflows/install-mdbook
 
+      # We build the English pages to a different directory than book/
+      # since we will use book/ for the redirects below (and mdbook
+      # removes the output directory).
       - name: Build course in English
-        run: mdbook build -d book
+        run: |
+          MDBOOK_OUTPUT__HTML__SITE_URL=/comprehensive-rust/en/ \
+          mdbook build -d en
 
       - name: Build all translations
         run: |
@@ -45,8 +50,35 @@ jobs:
               MDBOOK_BOOK__LANGUAGE=$po_lang \
               MDBOOK_PREPROCESSOR__GETTEXT__PO_FILE=po/$po_lang.po \
               MDBOOK_OUTPUT__HTML__SITE_URL=/comprehensive-rust/$po_lang/ \
-              mdbook build -d book/$po_lang
+              mdbook build -d $po_lang
           done
+
+      # We can now generate redirects for the English pages. This will
+      # go out of date as we change the pages, but since the pages
+      # change slowly, this will catch the majority of our page views.
+      - name: Configuring redirects for English pages
+        run: |
+          echo '[output.html.redirect]' >> book.toml
+          for page in $(find en -name '*.html'); do
+              echo "'${page#en/}' = '/comprehensive-rust/${page}'" >> book.toml
+          done
+
+      # Disable all pages: we cannot generate redirects if the pages
+      # we redirect _from_ already exists. This includes the special
+      # print.html page and the 404.html page.
+      - name: Disable normal pages
+        run: |
+          sed -i 's/input-404 = "404.md"/input-404 = "empty.md"/' book.toml
+          touch src/empty.md
+          echo '[output.html.print]' >> book.toml
+          echo 'enable = false'      >> book.toml
+          echo > src/SUMMARY.md
+
+      - name: Build redirects
+        run: mdbook build -d book
+
+      - name: Move all languages to output directory
+        run: mv en ${{ env.LANGUAGES }} book/
 
       - name: Setup Pages
         uses: actions/configure-pages@v2
