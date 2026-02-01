@@ -2,20 +2,32 @@
 minutes: 20
 ---
 
-# Exercise: Health Statistics
+# Exercise: Wizard's Inventory
 
-{{#include ../../third_party/rust-on-exercism/health-statistics.md}}
+In this exercise, you will manage a wizard's inventory using what you have
+learned about borrowing and ownership.
 
-Copy the code below to <https://play.rust-lang.org/> and fill in the missing
-method:
+The wizard has a collection of spells. You need to implement functions to add
+spells to the inventory and to cast spells from them.
 
-```rust,editable
-{{#include ../../third_party/rust-on-exercism/health-statistics.rs:setup}}
+```rust,editable,compile_fail
+{{#include exercise.rs:setup}}
 
-{{#include ../../third_party/rust-on-exercism/health-statistics.rs:User_visit_doctor}}
-        todo!("Update a user's statistics based on measurements from a visit to the doctor")
+    // TODO: Implement `add_spell` to take ownership of a spell and add it to
+    // the wizard's inventory.
+    fn add_spell(..., spell: ...) {
+        todo!()
+    }
+
+    // TODO: Implement `cast_spell` to borrow a spell from the inventory and
+    // cast it. The wizard's mana should decrease by the spell's cost.
+    // If the wizard doesn't have enough mana, the spell should fail.
+    fn cast_spell(..., name: ...) {
+        todo!()
     }
 }
 
-{{#include ../../third_party/rust-on-exercism/health-statistics.rs:tests}}
+{{#include exercise.rs:main}}
+
+{{#include exercise.rs:tests}}
 ```
