@@ -67,6 +67,7 @@ fn main() {
     merlin.cast_spell("Ice Blast"); // Fails (not enough mana)
     merlin.cast_spell("Teleport"); // Fails (not found)
 }
+// ANCHOR_END: main
 
 // ANCHOR: tests
 #[cfg(test)]
