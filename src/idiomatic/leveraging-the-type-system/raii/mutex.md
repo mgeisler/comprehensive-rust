@@ -2,11 +2,6 @@
 minutes: 10
 ---
 
-<!--
-Copyright 2025 Google LLC
-SPDX-License-Identifier: CC-BY-4.0
--->
-
 # Mutex and MutexGuard
 
 In earlier examples, RAII was used to manage concrete resources like file
@@ -15,9 +10,6 @@ access the value by calling `lock`, which then returns a `MutexGuard` which will
 unlock the `Mutex` automatically when dropped.
 
 ```rust
-# // Copyright 2025 Google LLC
-# // SPDX-License-Identifier: Apache-2.0
-#
 use std::sync::Mutex;
 
 fn main() {

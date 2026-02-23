@@ -2,19 +2,11 @@
 minutes: 13
 ---
 
-<!--
-Copyright 2024 Google LLC
-SPDX-License-Identifier: CC-BY-4.0
--->
-
 # Scoped Threads
 
 Normal threads cannot borrow from their environment:
 
 ```rust,editable,compile_fail
-# // Copyright 2024 Google LLC
-# // SPDX-License-Identifier: Apache-2.0
-#
 use std::thread;
 
 fn foo() {
@@ -32,9 +24,6 @@ fn main() {
 However, you can use a [scoped thread][1] for this:
 
 ```rust,editable
-# // Copyright 2024 Google LLC
-# // SPDX-License-Identifier: Apache-2.0
-#
 use std::thread;
 
 fn foo() {

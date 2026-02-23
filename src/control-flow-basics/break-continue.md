@@ -2,11 +2,6 @@
 minutes: 4
 ---
 
-<!--
-Copyright 2023 Google LLC
-SPDX-License-Identifier: CC-BY-4.0
--->
-
 # `break` and `continue`
 
 If you want to immediately start the next iteration use
@@ -18,9 +13,6 @@ With `loop`, this can take an optional expression that becomes the value of the
 `loop` expression.
 
 ```rust,editable
-# // Copyright 2023 Google LLC
-# // SPDX-License-Identifier: Apache-2.0
-#
 fn main() {
     let mut i = 0;
     loop {

@@ -2,11 +2,6 @@
 minutes: 10
 ---
 
-<!--
-Copyright 2025 Google LLC
-SPDX-License-Identifier: CC-BY-4.0
--->
-
 # PartialOrd and Ord
 
 Partial ordering & Total ordering.
@@ -16,9 +11,6 @@ Derivable: ✅
 When to implement: Almost always.
 
 ```rust
-# // Copyright 2025 Google LLC
-# // SPDX-License-Identifier: Apache-2.0
-#
 // pub trait PartialOrd<Rhs = Self>: PartialEq<Rhs>
 // {
 //     // Required method

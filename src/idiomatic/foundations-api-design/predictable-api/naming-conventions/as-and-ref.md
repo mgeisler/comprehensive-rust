@@ -2,11 +2,6 @@
 minutes: 5
 ---
 
-<!--
-Copyright 2025 Google LLC
-SPDX-License-Identifier: CC-BY-4.0
--->
-
 # `as_` and `_ref`: reference conversions
 
 `as` is a prefix for methods that convert references. `ref` is a suffix (but
@@ -18,9 +13,6 @@ Most commonly return references, but can also return a custom borrowing type or
 an unsafe pointer.
 
 ```rust,compile_fail
-# // Copyright 2025 Google LLC
-# // SPDX-License-Identifier: Apache-2.0
-#
 impl<T> Rc<T> {
     fn as_ptr(&self) -> *const T;
 
@@ -66,9 +58,6 @@ impl OwnedFd {
     many fields without an obvious primary one. Think about the call site:
 
   ```rust,compile_fail
-  # // Copyright 2025 Google LLC
-  # // SPDX-License-Identifier: Apache-2.0
-  #
   my_vec.as_ptr() // OK
   my_person.as_first_name() // does not read right, don't use "as_"
   my_person.first_name() // OK
@@ -79,9 +68,6 @@ impl OwnedFd {
     use `_ref` suffix:
 
   ```rust,compile_fail
-  # // Copyright 2025 Google LLC
-  # // SPDX-License-Identifier: Apache-2.0
-  #
   impl Person {
     fn first_name(&self) -> String
     fn first_name_ref() -> &str

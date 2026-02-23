@@ -2,20 +2,12 @@
 minutes: 5
 ---
 
-<!--
-Copyright 2024 Google LLC
-SPDX-License-Identifier: CC-BY-4.0
--->
-
 # Mocking
 
 For mocking, [Mockall] is a widely used library. You need to refactor your code
 to use traits, which you can then quickly mock:
 
 ```rust,ignore
-# // Copyright 2024 Google LLC
-# // SPDX-License-Identifier: Apache-2.0
-#
 {{#include mockall.rs:simple_example}}
 ```
 
@@ -52,9 +44,6 @@ to use traits, which you can then quickly mock:
   cat which becomes hungry 3 hours after the last time it was fed:
 
 ```rust,ignore
-# // Copyright 2024 Google LLC
-# // SPDX-License-Identifier: Apache-2.0
-#
 {{#include mockall.rs:extended_example}}
 ```
 

@@ -1,8 +1,3 @@
-<!--
-Copyright 2026 Google LLC
-SPDX-License-Identifier: CC-BY-4.0
--->
-
 # Memory Lifecycle
 
 Memory moves through different phases as objects (values) are created and

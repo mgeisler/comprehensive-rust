@@ -5,11 +5,6 @@ session: Day 2 Morning
 target_minutes: 180
 ---
 
-<!--
-Copyright 2022 Google LLC
-SPDX-License-Identifier: CC-BY-4.0
--->
-
 # Welcome to Day 2
 
 We have covered the foundations of Rust:

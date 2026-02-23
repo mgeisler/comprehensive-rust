@@ -1,8 +1,3 @@
-<!--
-Copyright 2023 Google LLC
-SPDX-License-Identifier: CC-BY-4.0
--->
-
 # Building in Android
 
 Create two genrules: One to generate the CXX header, and one to generate the CXX

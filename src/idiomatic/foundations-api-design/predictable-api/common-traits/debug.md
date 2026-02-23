@@ -2,11 +2,6 @@
 minutes: 5
 ---
 
-<!--
-Copyright 2025 Google LLC
-SPDX-License-Identifier: CC-BY-4.0
--->
-
 # Debug
 
 "Write to string" trait, for debug purposes.
@@ -16,9 +11,6 @@ Derivable: ✅
 When to implement: Almost always
 
 ```rust
-# // Copyright 2025 Google LLC
-# // SPDX-License-Identifier: Apache-2.0
-#
 // pub trait Debug {
 //     fn fmt(&self, f: &mut Formatter<'_>) -> Result<(), Error>;
 // }

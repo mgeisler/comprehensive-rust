@@ -2,11 +2,6 @@
 minutes: 5
 ---
 
-<!--
-Copyright 2026 Google LLC
-SPDX-License-Identifier: CC-BY-4.0
--->
-
 # 3 Shapes of Sound Rust
 
 - Functions written only in Safe Rust

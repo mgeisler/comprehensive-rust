@@ -2,20 +2,12 @@
 minutes: 15
 ---
 
-<!--
-Copyright 2025 Google LLC
-SPDX-License-Identifier: CC-BY-4.0
--->
-
 # Mutually Exclusive References / "Aliasing XOR Mutability"
 
 We can use the mutual exclusion of `&T` and `&mut T` references to prevent data
 from being used before it is ready.
 
 ```rust,editable
-# // Copyright 2025 Google LLC
-# // SPDX-License-Identifier: Apache-2.0
-#
 pub struct QueryResult;
 pub struct DatabaseConnection {/* fields omitted */}
 

@@ -2,11 +2,6 @@
 minutes: 5
 ---
 
-<!--
-Copyright 2023 Google LLC
-SPDX-License-Identifier: CC-BY-4.0
--->
-
 # Exclusive References
 
 Exclusive references, also known as mutable references, allow changing the value
@@ -15,9 +10,6 @@ they refer to. They have type `&mut T`.
 <!-- mdbook-xgettext: skip -->
 
 ```rust,editable
-# // Copyright 2023 Google LLC
-# // SPDX-License-Identifier: Apache-2.0
-#
 fn main() {
     let mut point = (1, 2);
     let x_coord = &mut point.0;

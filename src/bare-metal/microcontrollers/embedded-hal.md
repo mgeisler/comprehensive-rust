@@ -1,8 +1,3 @@
-<!--
-Copyright 2023 Google LLC
-SPDX-License-Identifier: CC-BY-4.0
--->
-
 # `embedded-hal`
 
 The [`embedded-hal`] crate provides a number of traits covering common

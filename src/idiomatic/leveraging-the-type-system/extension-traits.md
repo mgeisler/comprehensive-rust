@@ -2,11 +2,6 @@
 minutes: 15
 ---
 
-<!--
-Copyright 2025 Google LLC
-SPDX-License-Identifier: CC-BY-4.0
--->
-
 # Extension Traits
 
 It may desirable to **extend** foreign types with new inherent methods. For
@@ -16,9 +11,6 @@ method-calling syntax: `s.is_palindrome()`.
 It might feel natural to reach out for an `impl` block:
 
 ```rust,editable,compile_fail
-# // Copyright 2025 Google LLC
-# // SPDX-License-Identifier: Apache-2.0
-#
 // 🛠️❌
 impl str {
     pub fn is_palindrome(&self) -> bool {

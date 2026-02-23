@@ -1,8 +1,3 @@
-<!--
-Copyright 2023 Google LLC
-SPDX-License-Identifier: CC-BY-4.0
--->
-
 # Keyboard Shortcuts
 
 There are several useful keyboard shortcuts in mdBook:

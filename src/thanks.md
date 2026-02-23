@@ -2,11 +2,6 @@
 course: none
 ---
 
-<!--
-Copyright 2022 Google LLC
-SPDX-License-Identifier: CC-BY-4.0
--->
-
 # Thanks!
 
 _Thank you for taking Comprehensive Rust 🦀!_ We hope you enjoyed it and that it

@@ -2,11 +2,6 @@
 minutes: 2
 ---
 
-<!--
-Copyright 2025 Google LLC
-SPDX-License-Identifier: CC-BY-4.0
--->
-
 # `into`
 
 - Prefix for methods that convert `self` into another type.
@@ -14,9 +9,6 @@ SPDX-License-Identifier: CC-BY-4.0
 Consumes `self`, returns an owned value.
 
 ```rust,compile_fail
-# // Copyright 2025 Google LLC
-# // SPDX-License-Identifier: Apache-2.0
-#
 impl<T> Vec<T> {
     fn into_parts(self) -> (NonNull<T>, usize, usize);
 }

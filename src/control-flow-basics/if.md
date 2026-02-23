@@ -2,11 +2,6 @@
 minutes: 4
 ---
 
-<!--
-Copyright 2024 Google LLC
-SPDX-License-Identifier: CC-BY-4.0
--->
-
 # `if` expressions
 
 You use
@@ -14,9 +9,6 @@ You use
 exactly like `if` statements in other languages:
 
 ```rust,editable
-# // Copyright 2024 Google LLC
-# // SPDX-License-Identifier: Apache-2.0
-#
 fn main() {
     let x = 10;
     if x == 0 {
@@ -33,9 +25,6 @@ In addition, you can use `if` as an expression. The last expression of each
 block becomes the value of the `if` expression:
 
 ```rust,editable
-# // Copyright 2024 Google LLC
-# // SPDX-License-Identifier: Apache-2.0
-#
 fn main() {
     let x = 10;
     let size = if x < 20 { "small" } else { "large" };

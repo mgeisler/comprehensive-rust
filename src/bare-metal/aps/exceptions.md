@@ -1,8 +1,3 @@
-<!--
-Copyright 2023 Google LLC
-SPDX-License-Identifier: CC-BY-4.0
--->
-
 # Exceptions
 
 AArch64 defines an exception vector table with 16 entries, for 4 types of
@@ -14,9 +9,6 @@ calling into Rust code:
 <!-- mdbook-xgettext: skip -->
 
 ```rust,editable,compile_fail
-# // Copyright 2023 Google LLC
-# // SPDX-License-Identifier: Apache-2.0
-#
 {{#include examples/src/exceptions.rs:exceptions}}
 ```
 

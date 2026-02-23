@@ -1,8 +1,3 @@
-<!--
-Copyright 2023 Google LLC
-SPDX-License-Identifier: CC-BY-4.0
--->
-
 # Comparing Chromium and Cargo Ecosystems
 
 The Rust community typically uses `cargo` and libraries from [crates.io][2].

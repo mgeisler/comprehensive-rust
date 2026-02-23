@@ -1,8 +1,3 @@
-<!--
-Copyright 2024 Google LLC
-SPDX-License-Identifier: CC-BY-4.0
--->
-
 # Tokio
 
 Tokio provides:
@@ -12,9 +7,6 @@ Tokio provides:
 - A large ecosystem of libraries.
 
 ```rust,editable,compile_fail
-# // Copyright 2024 Google LLC
-# // SPDX-License-Identifier: Apache-2.0
-#
 use tokio::time;
 
 async fn count_to(count: i32) {

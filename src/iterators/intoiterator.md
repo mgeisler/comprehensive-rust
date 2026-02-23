@@ -2,11 +2,6 @@
 minutes: 5
 ---
 
-<!--
-Copyright 2023 Google LLC
-SPDX-License-Identifier: CC-BY-4.0
--->
-
 # `IntoIterator`
 
 The `Iterator` trait tells you how to _iterate_ once you have created an
@@ -16,9 +11,6 @@ defines how to create an iterator for a type. It is used automatically by the
 `for` loop.
 
 ```rust,editable
-# // Copyright 2023 Google LLC
-# // SPDX-License-Identifier: Apache-2.0
-#
 struct Grid {
     x_coords: Vec<u32>,
     y_coords: Vec<u32>,

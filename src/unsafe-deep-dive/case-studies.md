@@ -1,8 +1,3 @@
-<!--
-Copyright 2026 Google LLC
-SPDX-License-Identifier: CC-BY-4.0
--->
-
 # Case Studies
 
 Uses of `unsafe` in production that may be useful for further study:

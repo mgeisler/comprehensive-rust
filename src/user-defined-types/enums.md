@@ -2,20 +2,12 @@
 minutes: 5
 ---
 
-<!--
-Copyright 2023 Google LLC
-SPDX-License-Identifier: CC-BY-4.0
--->
-
 # Enums
 
 The `enum` keyword allows the creation of a type which has a few different
 variants:
 
 ```rust,editable
-# // Copyright 2023 Google LLC
-# // SPDX-License-Identifier: Apache-2.0
-#
 #[derive(Debug)]
 enum Direction {
     Left,
@@ -62,9 +54,6 @@ Key Points:
 
     <!-- mdbook-xgettext: skip -->
     ```rust,editable
-    # // Copyright 2023 Google LLC
-    # // SPDX-License-Identifier: Apache-2.0
-    #
     #[repr(u32)]
     enum Bar {
         A, // 0
@@ -96,9 +85,6 @@ Rust has several optimizations it can employ to make enums take up less space.
 
   <!-- mdbook-xgettext: skip -->
   ```rust,editable
-  # // Copyright 2023 Google LLC
-  # // SPDX-License-Identifier: Apache-2.0
-  #
   use std::mem::transmute;
 
   macro_rules! dbg_bits {

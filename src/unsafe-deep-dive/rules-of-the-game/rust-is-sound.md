@@ -2,11 +2,6 @@
 minutes: 5
 ---
 
-<!--
-Copyright 2026 Google LLC
-SPDX-License-Identifier: CC-BY-4.0
--->
-
 # Rust is sound
 
 - Soundness is fundamental to Rust

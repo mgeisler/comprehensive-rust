@@ -1,8 +1,3 @@
-<!--
-Copyright 2026 Google LLC
-SPDX-License-Identifier: CC-BY-4.0
--->
-
 # Unpin trait
 
 - `Unpin` type allows types to move freely, even when they're wrapped by a `Pin`

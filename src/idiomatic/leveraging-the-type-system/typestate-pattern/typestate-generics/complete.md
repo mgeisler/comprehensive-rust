@@ -2,11 +2,6 @@
 minutes: 15
 ---
 
-<!--
-Copyright 2025 Google LLC
-SPDX-License-Identifier: CC-BY-4.0
--->
-
 ## Serializer: complete implementation
 
 Looking back at our original desired flow:
@@ -71,9 +66,6 @@ be found in
   `Result`, allowing recovery:
 
   ```rust,compile_fail
-  # // Copyright 2025 Google LLC
-  # // SPDX-License-Identifier: Apache-2.0
-  #
   struct PropertySerializeError<S> {
       kind: PropertyError,
       serializer: Serializer<Struct<S>>,

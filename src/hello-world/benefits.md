@@ -2,11 +2,6 @@
 minutes: 3
 ---
 
-<!--
-Copyright 2023 Google LLC
-SPDX-License-Identifier: CC-BY-4.0
--->
-
 # Benefits of Rust
 
 Some unique selling points of Rust:

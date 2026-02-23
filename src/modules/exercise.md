@@ -2,11 +2,6 @@
 minutes: 15
 ---
 
-<!--
-Copyright 2023 Google LLC
-SPDX-License-Identifier: CC-BY-4.0
--->
-
 # Exercise: Modules for a GUI Library
 
 In this exercise, you will reorganize a small GUI Library implementation. This
@@ -35,9 +30,6 @@ files in the `src` directory.
 Here's the single-module implementation of the GUI library:
 
 ```rust,editable
-# // Copyright 2023 Google LLC
-# // SPDX-License-Identifier: Apache-2.0
-#
 {{#include exercise.rs:single-module}}
 ```
 

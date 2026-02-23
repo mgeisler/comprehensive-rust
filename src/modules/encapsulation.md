@@ -2,11 +2,6 @@
 minutes: 5
 ---
 
-<!--
-Copyright 2024 Google LLC
-SPDX-License-Identifier: CC-BY-4.0
--->
-
 # Visibility and Encapsulation
 
 Like with items in a module, struct fields are also private by default. Private
@@ -15,9 +10,6 @@ modules). This allows us to encapsulate implementation details of struct,
 controlling what data and functionality is visible externally.
 
 ```rust,editable
-# // Copyright 2024 Google LLC
-# // SPDX-License-Identifier: Apache-2.0
-#
 use outer::Foo;
 
 mod outer {

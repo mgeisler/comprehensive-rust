@@ -2,20 +2,12 @@
 minutes: 15
 ---
 
-<!--
-Copyright 2025 Google LLC
-SPDX-License-Identifier: CC-BY-4.0
--->
-
 # Method Resolution Conflicts
 
 What happens when you have a name conflict between an inherent method and an
 extension method?
 
 ```rust,editable
-# // Copyright 2025 Google LLC
-# // SPDX-License-Identifier: Apache-2.0
-#
 mod ext {
     pub trait CountOnesExt {
         fn count_ones(&self) -> u32;
@@ -69,9 +61,6 @@ fn main() {
   invocation accordingly:
 
   ```rust
-  # // Copyright 2025 Google LLC
-  # // SPDX-License-Identifier: Apache-2.0
-  #
   assert_eq!((&mut -1i32).count_ones(), 32);
   ```
 

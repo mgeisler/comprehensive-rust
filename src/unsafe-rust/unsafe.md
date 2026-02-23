@@ -2,11 +2,6 @@
 minutes: 5
 ---
 
-<!--
-Copyright 2023 Google LLC
-SPDX-License-Identifier: CC-BY-4.0
--->
-
 # Unsafe Rust
 
 The Rust language has two parts:

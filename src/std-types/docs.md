@@ -2,11 +2,6 @@
 minutes: 5
 ---
 
-<!--
-Copyright 2023 Google LLC
-SPDX-License-Identifier: CC-BY-4.0
--->
-
 # Documentation
 
 Rust comes with extensive documentation. For example:
@@ -24,9 +19,6 @@ Use `rustup doc --std` or <https://std.rs> to view the documentation.
 In fact, you can document your own code:
 
 ```rust,editable
-# // Copyright 2023 Google LLC
-# // SPDX-License-Identifier: Apache-2.0
-#
 /// Determine whether the first argument is divisible by the second argument.
 ///
 /// If the second argument is zero, the result is false.
@@ -47,9 +39,6 @@ To document an item from inside the item (such as inside a module), use `//!` or
 `/*! .. */`, called "inner doc comments":
 
 ```rust,editable
-# // Copyright 2023 Google LLC
-# // SPDX-License-Identifier: Apache-2.0
-#
 //! This module contains functionality relating to divisibility of integers.
 ```
 

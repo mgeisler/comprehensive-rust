@@ -2,11 +2,6 @@
 minutes: 5
 ---
 
-<!--
-Copyright 2024 Google LLC
-SPDX-License-Identifier: CC-BY-4.0
--->
-
 # Async Traits
 
 Async methods in traits were stabilized in the 1.75 release. This required
@@ -25,9 +20,6 @@ The [async_trait] crate provides a workaround for `dyn` support through a macro,
 with specific caveats:
 
 ```rust,editable,compile_fail
-# // Copyright 2024 Google LLC
-# // SPDX-License-Identifier: Apache-2.0
-#
 use async_trait::async_trait;
 use std::time::Instant;
 use tokio::time::{Duration, sleep};

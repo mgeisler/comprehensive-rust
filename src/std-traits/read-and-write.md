@@ -2,19 +2,11 @@
 minutes: 5
 ---
 
-<!--
-Copyright 2023 Google LLC
-SPDX-License-Identifier: CC-BY-4.0
--->
-
 # `Read` and `Write`
 
 Using [`Read`][1] and [`BufRead`][2], you can abstract over `u8` sources:
 
 ```rust,editable
-# // Copyright 2023 Google LLC
-# // SPDX-License-Identifier: Apache-2.0
-#
 use std::io::{BufRead, BufReader, Read, Result};
 
 fn count_lines<R: Read>(reader: R) -> usize {
@@ -35,9 +27,6 @@ fn main() -> Result<()> {
 Similarly, [`Write`][3] lets you abstract over `u8` sinks:
 
 ```rust,editable
-# // Copyright 2023 Google LLC
-# // SPDX-License-Identifier: Apache-2.0
-#
 use std::io::{Result, Write};
 
 fn log<W: Write>(writer: &mut W, msg: &str) -> Result<()> {

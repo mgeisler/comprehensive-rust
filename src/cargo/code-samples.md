@@ -1,8 +1,3 @@
-<!--
-Copyright 2022 Google LLC
-SPDX-License-Identifier: CC-BY-4.0
--->
-
 # Code Samples in This Training
 
 For this training, we will mostly explore the Rust language through examples
@@ -16,9 +11,6 @@ work with dependencies and for that you need Cargo.
 The code blocks in this course are fully interactive:
 
 ```rust,editable
-# // Copyright 2022 Google LLC
-# // SPDX-License-Identifier: Apache-2.0
-#
 fn main() {
     println!("Edit me!");
 }

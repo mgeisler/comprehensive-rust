@@ -2,11 +2,6 @@
 minutes: 6
 ---
 
-<!--
-Copyright 2022 Google LLC
-SPDX-License-Identifier: CC-BY-4.0
--->
-
 # Examples
 
 ## `Send + Sync`

@@ -2,11 +2,6 @@
 minutes: 15
 ---
 
-<!--
-Copyright 2023 Google LLC
-SPDX-License-Identifier: CC-BY-4.0
--->
-
 # Exercise: Collatz Sequence
 
 The [Collatz Sequence](https://en.wikipedia.org/wiki/Collatz_conjecture) is
@@ -31,9 +26,6 @@ Write a function to calculate the length of the Collatz sequence for a given
 initial `n`.
 
 ```rust,editable,should_panic
-# // Copyright 2023 Google LLC
-# // SPDX-License-Identifier: Apache-2.0
-#
 {{#include exercise.rs:collatz_length}}
   todo!("Implement this")
 }

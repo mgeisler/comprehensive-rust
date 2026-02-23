@@ -2,17 +2,9 @@
 minutes: 2
 ---
 
-<!--
-Copyright 2025 Google LLC
-SPDX-License-Identifier: CC-BY-4.0
--->
-
 # Statically Sized and Dynamically Sized Types
 
 ```rust
-# // Copyright 2025 Google LLC
-# // SPDX-License-Identifier: Apache-2.0
-#
 use std::fmt::Debug;
 
 pub struct AlwaysSized<T /* : Sized */>(T);

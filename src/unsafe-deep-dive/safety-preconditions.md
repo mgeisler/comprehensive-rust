@@ -1,8 +1,3 @@
-<!--
-Copyright 2026 Google LLC
-SPDX-License-Identifier: CC-BY-4.0
--->
-
 # Safety Preconditions
 
 Safety preconditions are conditions on an action that must be satisfied before

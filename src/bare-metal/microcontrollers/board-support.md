@@ -1,8 +1,3 @@
-<!--
-Copyright 2023 Google LLC
-SPDX-License-Identifier: CC-BY-4.0
--->
-
 # Board support crates
 
 Board support crates provide a further level of wrapping for a specific board
@@ -11,9 +6,6 @@ for convenience.
 <!-- mdbook-xgettext: skip -->
 
 ```rust,editable,compile_fail
-# // Copyright 2023 Google LLC
-# // SPDX-License-Identifier: Apache-2.0
-#
 {{#include examples/src/bin/board_support.rs:Example}}
 ```
 

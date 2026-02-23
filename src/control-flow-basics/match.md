@@ -2,19 +2,11 @@
 minutes: 5
 ---
 
-<!--
-Copyright 2024 Google LLC
-SPDX-License-Identifier: CC-BY-4.0
--->
-
 # `match` Expressions
 
 `match` can be used to check a value against one or more options:
 
 ```rust,editable
-# // Copyright 2024 Google LLC
-# // SPDX-License-Identifier: Apache-2.0
-#
 fn main() {
     let val = 1;
     match val {
@@ -31,9 +23,6 @@ fn main() {
 Like `if` expressions, `match` can also return a value;
 
 ```rust,editable
-# // Copyright 2024 Google LLC
-# // SPDX-License-Identifier: Apache-2.0
-#
 fn main() {
     let flag = true;
     let val = match flag {

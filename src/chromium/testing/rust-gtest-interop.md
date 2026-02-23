@@ -1,8 +1,3 @@
-<!--
-Copyright 2023 Google LLC
-SPDX-License-Identifier: CC-BY-4.0
--->
-
 # `rust_gtest_interop` Library
 
 The [`rust_gtest_interop`][0] library provides a way to:
@@ -15,9 +10,6 @@ The [`rust_gtest_interop`][0] library provides a way to:
 Example:
 
 ```rust,ignore
-# // Copyright 2023 Google LLC
-# // SPDX-License-Identifier: Apache-2.0
-#
 use rust_gtest_interop::prelude::*;
 
 #[gtest(MyRustTestSuite, MyAdditionTest)]

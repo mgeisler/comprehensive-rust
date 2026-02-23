@@ -4,11 +4,6 @@ session: Morning
 target_minutes: 180
 ---
 
-<!--
-Copyright 2025 Google LLC
-SPDX-License-Identifier: CC-BY-4.0
--->
-
 # Welcome to Idiomatic Rust
 
 [Rust Fundamentals](../welcome-day-1.md) introduced Rust syntax and core

@@ -1,8 +1,3 @@
-<!--
-Copyright 2022 Google LLC
-SPDX-License-Identifier: CC-BY-4.0
--->
-
 # Build Rules
 
 The Android build system (Soong) supports Rust through several modules:

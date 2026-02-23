@@ -2,11 +2,6 @@
 minutes: 2
 ---
 
-<!--
-Copyright 2023 Google LLC
-SPDX-License-Identifier: CC-BY-4.0
--->
-
 # Playground
 
 The [Rust Playground](https://play.rust-lang.org/) provides an easy way to run

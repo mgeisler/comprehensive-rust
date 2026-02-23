@@ -1,8 +1,3 @@
-<!--
-Copyright 2023 Google LLC
-SPDX-License-Identifier: CC-BY-4.0
--->
-
 # Auditing Third Party Crates
 
 Adding new libraries is subject to Chromium's standard [policies][0], but of

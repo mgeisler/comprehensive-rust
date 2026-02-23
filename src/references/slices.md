@@ -2,11 +2,6 @@
 minutes: 7
 ---
 
-<!--
-Copyright 2024 Google LLC
-SPDX-License-Identifier: CC-BY-4.0
--->
-
 # Slices
 
 A slice gives you a view into a larger collection:
@@ -14,9 +9,6 @@ A slice gives you a view into a larger collection:
 <!-- mdbook-xgettext: skip -->
 
 ```rust,editable
-# // Copyright 2024 Google LLC
-# // SPDX-License-Identifier: Apache-2.0
-#
 fn main() {
     let a: [i32; 6] = [10, 20, 30, 40, 50, 60];
     println!("a: {a:?}");

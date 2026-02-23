@@ -2,11 +2,6 @@
 session: Afternoon
 ---
 
-<!--
-Copyright 2023 Google LLC
-SPDX-License-Identifier: CC-BY-4.0
--->
-
 # Application processors
 
 So far we've talked about microcontrollers, such as the Arm Cortex-M series.

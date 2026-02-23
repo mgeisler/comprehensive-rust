@@ -2,17 +2,9 @@
 minutes: 5
 ---
 
-<!--
-Copyright 2025 Google LLC
-SPDX-License-Identifier: CC-BY-4.0
--->
-
 # "Inheritance" in Rust: Supertraits
 
 ```rust
-# // Copyright 2025 Google LLC
-# // SPDX-License-Identifier: Apache-2.0
-#
 pub trait SuperTrait {}
 
 pub trait Trait: SuperTrait {}

@@ -2,11 +2,6 @@
 minutes: 2
 ---
 
-<!--
-Copyright 2026 Google LLC
-SPDX-License-Identifier: CC-BY-4.0
--->
-
 # Soundness
 
 A sound function is one that can't trigger UB if its safety preconditions are

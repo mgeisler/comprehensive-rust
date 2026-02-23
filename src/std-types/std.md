@@ -2,11 +2,6 @@
 minutes: 3
 ---
 
-<!--
-Copyright 2023 Google LLC
-SPDX-License-Identifier: CC-BY-4.0
--->
-
 # Standard Library
 
 Rust comes with a standard library that helps establish a set of common types

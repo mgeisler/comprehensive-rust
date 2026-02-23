@@ -2,20 +2,12 @@
 minutes: 10
 ---
 
-<!--
-Copyright 2023 Google LLC
-SPDX-License-Identifier: CC-BY-4.0
--->
-
 # Exercise: Generic `min`
 
 In this short exercise, you will implement a generic `min` function that
 determines the minimum of two values, using the [`Ord`] trait.
 
 ```rust,editable
-# // Copyright 2023 Google LLC
-# // SPDX-License-Identifier: Apache-2.0
-#
 use std::cmp::Ordering;
 
 // TODO: implement the `min` function used in the tests.

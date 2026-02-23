@@ -2,11 +2,6 @@
 minutes: 5
 ---
 
-<!--
-Copyright 2025 Google LLC
-SPDX-License-Identifier: CC-BY-4.0
--->
-
 # PhantomData 1/4: De-duplicating Same Data & Semantics
 
 The newtype pattern can sometimes come up against the DRY principle, how do we
@@ -14,9 +9,6 @@ solve this?
 
 <!-- dprint-ignore-start -->
 ```rust,editable,compile_fail
-# // Copyright 2025 Google LLC
-# // SPDX-License-Identifier: Apache-2.0
-#
 pub struct UserId(u64);
 impl ChatUser for UserId { /* ... */ }
 

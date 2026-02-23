@@ -2,11 +2,6 @@
 minutes: 5
 ---
 
-<!--
-Copyright 2025 Google LLC
-SPDX-License-Identifier: CC-BY-4.0
--->
-
 # Display
 
 "Write to string" trait, prioritizing readability for an end user.
@@ -17,9 +12,6 @@ When to implement: As-needed, for errors and other types that an end-user will
 see.
 
 ```rust
-# // Copyright 2025 Google LLC
-# // SPDX-License-Identifier: Apache-2.0
-#
 #[derive(Debug)]
 pub enum NetworkError {
     HttpCode(u16),

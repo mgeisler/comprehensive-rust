@@ -2,11 +2,6 @@
 minutes: 5
 ---
 
-<!--
-Copyright 2022 Google LLC
-SPDX-License-Identifier: CC-BY-4.0
--->
-
 # Visibility
 
 Modules are a privacy boundary:
@@ -17,9 +12,6 @@ Modules are a privacy boundary:
   descendants of `foo`.
 
 ```rust,editable
-# // Copyright 2022 Google LLC
-# // SPDX-License-Identifier: Apache-2.0
-#
 mod outer {
     fn private() {
         println!("outer::private");

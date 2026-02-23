@@ -2,11 +2,6 @@
 minutes: 30
 ---
 
-<!--
-Copyright 2026 Google LLC
-SPDX-License-Identifier: CC-BY-4.0
--->
-
 # Example: String interning library
 
 C++ Header: interner.hpp
@@ -97,9 +92,6 @@ explaining the code below or asking learners to do further research.
 _Suggested Solution_
 
 ```rust
-# // Copyright 2026 Google LLC
-# // SPDX-License-Identifier: Apache-2.0
-#
 use std::ffi::{CStr, CString};
 use std::marker::PhantomData;
 use std::os::raw::c_char;

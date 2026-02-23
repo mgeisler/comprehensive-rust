@@ -1,8 +1,3 @@
-<!--
-Copyright 2024 Google LLC
-SPDX-License-Identifier: CC-BY-4.0
--->
-
 # AIDL Client
 
 Finally, we can create a Rust client for our new service.
@@ -10,9 +5,6 @@ Finally, we can create a Rust client for our new service.
 _birthday_service/src/client.rs_:
 
 ```rust,ignore
-# // Copyright 2024 Google LLC
-# // SPDX-License-Identifier: Apache-2.0
-#
 use com_example_birthdayservice::aidl::com::example::birthdayservice::IBirthdayService::IBirthdayService;
 use com_example_birthdayservice::binder;
 

@@ -1,8 +1,3 @@
-<!--
-Copyright 2024 Google LLC
-SPDX-License-Identifier: CC-BY-4.0
--->
-
 # Array Types
 
 The array types (`T[]`, `byte[]`, and `List<T>`) are translated to the

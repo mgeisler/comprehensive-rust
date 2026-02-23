@@ -5,11 +5,6 @@ session: Day 1 Morning
 target_minutes: 180
 ---
 
-<!--
-Copyright 2022 Google LLC
-SPDX-License-Identifier: CC-BY-4.0
--->
-
 # Welcome to Day 1
 
 This is the first day of Rust Fundamentals. We will cover a broad range of

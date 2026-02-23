@@ -1,8 +1,3 @@
-<!--
-Copyright 2023 Google LLC
-SPDX-License-Identifier: CC-BY-4.0
--->
-
 ## Limitations of CXX
 
 By far the most useful page when using CXX is the [type reference][1].

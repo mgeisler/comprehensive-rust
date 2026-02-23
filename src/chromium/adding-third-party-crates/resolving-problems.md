@@ -1,8 +1,3 @@
-<!--
-Copyright 2023 Google LLC
-SPDX-License-Identifier: CC-BY-4.0
--->
-
 # Resolving Problems
 
 If your build fails, it may be because of a `build.rs`: programs which do

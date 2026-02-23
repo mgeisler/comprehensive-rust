@@ -1,8 +1,3 @@
-<!--
-Copyright 2023 Google LLC
-SPDX-License-Identifier: CC-BY-4.0
--->
-
 # `spin`
 
 `std::sync::Mutex` and the other synchronisation primitives from `std::sync` are
@@ -15,9 +10,6 @@ primitives.
 <!-- mdbook-xgettext: skip -->
 
 ```rust,editable,compile_fail
-# // Copyright 2023 Google LLC
-# // SPDX-License-Identifier: Apache-2.0
-#
 use spin::mutex::SpinMutex;
 
 static COUNTER: SpinMutex<u32> = SpinMutex::new(0);

@@ -1,8 +1,3 @@
-<!--
-Copyright 2025 Google LLC
-SPDX-License-Identifier: CC-BY-4.0
--->
-
 # A Simple C Library
 
 Let's first create a small C library:
