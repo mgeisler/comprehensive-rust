@@ -7,6 +7,7 @@ SPDX-License-Identifier: CC-BY-4.0
 
 [Welcome to Comprehensive Rust 🦀](index.md)
 
+- [About the Speaker](about-the-speaker.md)
 - [Running the Course](running-the-course.md)
   - [Course Structure](running-the-course/course-structure.md)
   - [Keyboard Shortcuts](running-the-course/keyboard-shortcuts.md)
