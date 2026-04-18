@@ -1,0 +1,11 @@
+load("//:languages.bzl", "LANGUAGES")
+
+[
+    genrule(
+        name = "backdated-%s" % lang,
+        srcs = ["@backdated_sources//:%s.tar.gz" % lang],
+        outs = ["backdated-%s.tar.gz" % lang],
+        cmd = "cp $< $@",
+    )
+    for lang in LANGUAGES
+]

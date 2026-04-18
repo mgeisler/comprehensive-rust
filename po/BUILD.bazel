@@ -1,0 +1,4 @@
+# This file is required to make the 'po/' directory a Bazel package.
+# This allows the .po files to be referenced as labels (e.g., '//po:da.po').
+
+exports_files(glob(["*.po"]))

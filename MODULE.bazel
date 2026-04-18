@@ -1,0 +1,37 @@
+module(
+    name = "comprehensive-rust",
+    version = "0.1.0",
+)
+
+# rules_pkg is used to create tarball artifacts of the back-dated sources.
+bazel_dep(name = "rules_pkg", version = "1.0.1")
+
+# The backdated_sources extension manages the "git time travel" logic.
+# It ensures that each language's source files match its .po file timestamp.
+backdated_sources = use_extension("//:backdated_sources.bzl", "backdated_sources")
+
+# Registration of all supported languages for the back-dating logic.
+backdated_sources.language(po = "//po:ar.po")
+backdated_sources.language(po = "//po:bn.po")
+backdated_sources.language(po = "//po:da.po")
+backdated_sources.language(po = "//po:de.po")
+backdated_sources.language(po = "//po:el.po")
+backdated_sources.language(po = "//po:es.po")
+backdated_sources.language(po = "//po:fa.po")
+backdated_sources.language(po = "//po:fr.po")
+backdated_sources.language(po = "//po:id.po")
+backdated_sources.language(po = "//po:it.po")
+backdated_sources.language(po = "//po:ja.po")
+backdated_sources.language(po = "//po:ko.po")
+backdated_sources.language(po = "//po:pl.po")
+backdated_sources.language(po = "//po:pt-BR.po")
+backdated_sources.language(po = "//po:ro.po")
+backdated_sources.language(po = "//po:ru.po")
+backdated_sources.language(po = "//po:tr.po")
+backdated_sources.language(po = "//po:uk.po")
+backdated_sources.language(po = "//po:vi.po")
+backdated_sources.language(po = "//po:zh-CN.po")
+backdated_sources.language(po = "//po:zh-TW.po")
+
+# The hub repository provides a central entry point for all back-dated snapshots.
+use_repo(backdated_sources, "backdated_sources")
