@@ -3,9 +3,9 @@ set -Eeuo pipefail
 
 # Usage: build.sh <book-lang> <dest-dir>
 #
-# Build the course as of the date specified specified in the
-# POT-Creation-Date header of po/$book_lang.po. The output can be
-# found in $dest_dir.
+# Build the course for a specific language. The sources are back-dated
+# to match the state of the translation using the POT-Creation-Date
+# header of po/$book_lang.po. The output can be found in $dest_dir.
 #
 # The src/ and third_party/ directories are left in a dirty state so
 # you can run `mdbook test` and other commands afterwards.
@@ -15,17 +15,13 @@ set -Eeuo pipefail
 book_lang=${1:?"Usage: $0 <book-lang> <dest-dir>"}
 dest_dir=${2:?"Usage: $0 <book-lang> <dest-dir>"}
 
-if [ "$book_lang" = "en" ]; then
-    echo "::group::Building English course"
-else
-    pot_creation_date=$(grep --max-count 1 '^"POT-Creation-Date:' "po/$book_lang.po" | sed -E 's/".*: (.*)\\n"/\1/')
-    pot_creation_date=${pot_creation_date:-now}
-    echo "::group::Building $book_lang translation as of $pot_creation_date"
+echo "::group::Building $book_lang course"
 
-    # Back-date the sources to POT-Creation-Date. The content lives in two
-    # directories:
-    rm -r src/ third_party/
-    git restore --source "$(git rev-list -n 1 --before "$pot_creation_date" @)" src/ third_party/ book.toml
+bazel build "//:backdated-$book_lang.tar.gz"
+rm -rf src/ third_party/ book.toml
+tar -xzf "bazel-bin/backdated-$book_lang.tar.gz"
+
+if [ "$book_lang" != "en" ]; then
     # Set language and adjust site URL. Clear the redirects since they are
     # in sync with the source files, not the translation.
     export MDBOOK_BOOK__LANGUAGE=$book_lang
