@@ -1,4 +1,19 @@
+load("@rules_rust_mdbook//:defs.bzl", "mdbook", "mdbook_server")
 load("//:languages.bzl", "LANGUAGES")
+load("//:tool_hub.bzl", "tool_hub")
+
+tool_hub(
+    name = "mdbook-plugins",
+    tools = {
+        "//mdbook-course": "mdbook-course",
+        "//mdbook-exerciser": "mdbook-exerciser",
+        "@mdbook_plugins//:mdbook-i18n-helpers__mdbook-gettext": "mdbook-gettext",
+        "@mdbook_plugins//:mdbook-i18n-helpers__mdbook-xgettext": "mdbook-xgettext",
+        "@mdbook_plugins//:mdbook-pandoc__mdbook-pandoc": "mdbook-pandoc",
+        "@svgbob_plugin//:mdbook-svgbob__mdbook-svgbob": "mdbook-svgbob",
+        "@mdbook_plugins//:mdbook-linkcheck2__mdbook-linkcheck2": "mdbook-linkcheck2",
+    },
+)
 
 [
     genrule(
@@ -9,3 +24,29 @@ load("//:languages.bzl", "LANGUAGES")
     )
     for lang in LANGUAGES
 ]
+
+filegroup(
+    name = "content",
+    srcs = glob([
+        "src/**/*.md",
+        "src/**/*.rs",
+    ]),
+)
+
+filegroup(
+    name = "theme",
+    srcs = glob([
+        "theme/**/*.css",
+        "theme/*.js",
+    ]),
+)
+
+mdbook(
+    name = "comprehensive-rust",
+    srcs = [
+        ":content",
+        ":theme",
+    ],
+    book = "book.toml",
+    plugins = [":mdbook-plugins"],
+)
