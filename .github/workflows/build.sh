@@ -17,6 +17,10 @@ dest_dir=${2:?"Usage: $0 <book-lang> <dest-dir>"}
 
 echo "::group::Building $book_lang course"
 
+bazel build //:mdbook-plugins
+ls -l bazel-bin/mdbook-plugins
+export PATH="$PWD/bazel-bin/mdbook-plugins:$PATH"
+
 bazel build "//:backdated-$book_lang.tar.gz"
 rm -rf src/ third_party/ book.toml
 tar -xzf "bazel-bin/backdated-$book_lang.tar.gz"

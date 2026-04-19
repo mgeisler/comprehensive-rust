@@ -107,18 +107,10 @@ jobs:
         with:
           fetch-depth: 0 # We need the full history for build.sh below.
 
-      - name: Update Rust
-        run: rustup update
-
       - name: Setup Bazel cache
         uses: bazel-contrib/setup-bazel@0.19.0
         with:
           disk-cache: true
-
-      - name: Setup Rust cache
-        uses: ./.github/workflows/setup-rust-cache
-        with:
-          key: ${{ contains(fromJSON(env.LINK_CHECKED_LANGUAGES), matrix.language) }}
 
       - name: Install dependencies
         uses: ./.github/workflows/apt-get-install

@@ -8,10 +8,6 @@ runs:
     - name: Ensure cargo-binstall is installed
       uses: cargo-bins/cargo-binstall@main
 
-    - name: Install mdbook
-      run: cargo xtask install-tools --binstall
-      shell: bash
-
     - name: Install mdbook-pandoc dependencies
       uses: ./.github/workflows/apt-get-install
       with:
@@ -28,9 +24,3 @@ runs:
           texlive-lang-cjk
           texlive-lang-japanese
           texlive-luatex
-
-    - name: Install mdbook-pandoc
-      run: |
-        curl -LsSf https://github.com/jgm/pandoc/releases/download/3.7.0.1/pandoc-3.7.0.1-linux-amd64.tar.gz | tar zxf -
-        echo "$PWD/pandoc-3.7.0.1/bin" >> $GITHUB_PATH
-      shell: bash

@@ -3,8 +3,80 @@ module(
     version = "0.1.0",
 )
 
-# rules_pkg is used to create tarball artifacts of the back-dated sources.
 bazel_dep(name = "rules_pkg", version = "1.0.1")
+bazel_dep(name = "rules_rust", version = "0.68.1")
+bazel_dep(name = "rules_rust_mdbook", version = "0.68.1")
+
+rust = use_extension("@rules_rust//rust:extensions.bzl", "rust")
+rust.toolchain(edition = "2024")
+use_repo(rust, "rust_toolchains")
+
+register_toolchains("@rust_toolchains//:all")
+
+crate_universe = use_extension("@rules_rust//crate_universe:extension.bzl", "crate")
+crate_universe.from_cargo(
+    name = "crates",
+    cargo_lockfile = "//:Cargo.lock",
+    manifests = ["//:Cargo.toml"],
+)
+use_repo(crate_universe, "crates")
+
+rust_host_tools = use_extension("@rules_rust//rust:extensions.bzl", "rust_host_tools")
+rust_host_tools.host_tools(
+    name = "rust_host_tools_nightly",
+    sha256s = {
+        "2025-09-01/cargo-nightly-x86_64-unknown-linux-gnu.tar.xz": "9a701f2eb103703c018518066fa7deb476f7ebab548b1c4e2ea0df81ee42a20f",
+        "2025-09-01/clippy-nightly-x86_64-unknown-linux-gnu.tar.xz": "a55b532605896ed0a22f44d68c4eba8ba0ad66ea0f62f3c62469b0a3d01ab19c",
+        "2025-09-01/llvm-tools-nightly-x86_64-unknown-linux-gnu.tar.xz": "a0da791e41770b888c60ef74a0c63c5f6fe11bddb2a8fa88075341a9acb442a6",
+        "2025-09-01/rust-std-nightly-x86_64-unknown-linux-gnu.tar.xz": "b3c2d890d9405285e015ab4ceb78087e3ec55c64b0b3030d79102dfe5e622e09",
+        "2025-09-01/rustc-nightly-x86_64-unknown-linux-gnu.tar.xz": "7f5486ae6ece8a734149e5fce6dc8f1bcdcb36b5c5cb53a819569109b445c700",
+    },
+    version = "nightly/2025-09-01",
+)
+use_repo(rust_host_tools, "rust_host_tools_nightly")
+
+# Repositories for mdbook plugins. Try adding new plugins to the first
+# repository. If this fails due to conflicts in their dependencies,
+# isolate it below with additional repositories.
+crate_universe.spec(
+    artifact = "bin",
+    package = "mdbook-i18n-helpers",
+    repositories = ["mdbook_plugins"],
+    version = "0.3.6",
+)
+crate_universe.spec(
+    artifact = "bin",
+    package = "mdbook-linkcheck2",
+    repositories = ["mdbook_plugins"],
+    version = "0.9.1",
+)
+crate_universe.spec(
+    artifact = "bin",
+    package = "mdbook-pandoc",
+    repositories = ["mdbook_plugins"],
+    version = "0.10.4",
+)
+crate_universe.from_specs(
+    name = "mdbook_plugins",
+    generate_binaries = True,
+    host_tools = "@rust_host_tools_nightly",
+)
+use_repo(crate_universe, "mdbook_plugins")
+
+# mdbook-svgbob depends transitively on sauron-core, which has a
+# "=0.3.30" dependency on futures. This conflicts with other plugins.
+crate_universe.spec(
+    artifact = "bin",
+    package = "mdbook-svgbob",
+    repositories = ["svgbob_plugin"],
+    version = "0.2.2",
+)
+crate_universe.from_specs(
+    name = "svgbob_plugin",
+    generate_binaries = True,
+    host_tools = "@rust_host_tools_nightly",
+)
+use_repo(crate_universe, "svgbob_plugin")
 
 # The backdated_sources extension manages the "git time travel" logic.
 # It ensures that each language's source files match its .po file timestamp.
