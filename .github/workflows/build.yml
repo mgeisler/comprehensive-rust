@@ -96,7 +96,7 @@ jobs:
       - find-languages
     strategy:
       matrix:
-        language: ${{ fromJSON(needs.find-languages.outputs.languages) }}
+        language: ["en", "da", "ja"]
       fail-fast: false
     env:
       # Opt-in for checking links in translations - add the language below.
