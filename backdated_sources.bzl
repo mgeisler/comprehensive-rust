@@ -33,12 +33,25 @@ def _git_archive_repo_impl(repository_ctx):
     if result.return_code != 0:
         fail("Failed to run git archive for commit {}: {}".format(commit, result.stderr))
 
-    # Every Bazel repository must have a BUILD.bazel file. We generate
-    # one that exposes the archive for use in the main build.
+    # Extract the archive immediately so the files are directly accessible.
+    repository_ctx.extract(archive)
+
+    # Generate a BUILD.bazel that provides an aggregate interface.
     repository_ctx.file("BUILD.bazel", """
+filegroup(
+    name = "all_files",
+    srcs = glob(["**"], exclude = ["BUILD.bazel"]),
+    visibility = ["//visibility:public"],
+)
+
 filegroup(
     name = "archive",
     srcs = ["archive.tar.gz"],
+    visibility = ["//visibility:public"],
+)
+
+exports_files(
+    ["book.toml"],
     visibility = ["//visibility:public"],
 )
 """, executable = False)
@@ -57,18 +70,31 @@ def _alias_repo_impl(repository_ctx):
     This allows us to have stable repository names (like @lang_da) that point
     to content-addressed repositories (like @repo_abcd123).
     """
+    actual = repository_ctx.attr.actual_repo
     repository_ctx.file("BUILD.bazel", """
 alias(
     name = "archive",
-    actual = "{}",
+    actual = "{actual}//:archive",
     visibility = ["//visibility:public"],
 )
-""".format(repository_ctx.attr.actual_archive), executable = False)
+
+alias(
+    name = "srcs",
+    actual = "{actual}//:all_files",
+    visibility = ["//visibility:public"],
+)
+
+alias(
+    name = "book",
+    actual = "{actual}//:book.toml",
+    visibility = ["//visibility:public"],
+)
+""".format(actual = actual), executable = False)
 
 alias_repo = repository_rule(
     implementation = _alias_repo_impl,
     attrs = {
-        "actual_archive": attr.string(mandatory = True),
+        "actual_repo": attr.string(mandatory = True),
     },
 )
 
@@ -172,13 +198,15 @@ def _backdated_sources_extension_impl(module_ctx):
     for cfg in lang_configs:
         alias_repo(
             name = _lang_repo_name(cfg.name),
-            actual_archive = "@%s//:archive" % repos[cfg.commit],
+            actual_repo = "@%s" % repos[cfg.commit],
         )
 
     # Instantiate the central @backdated_sources hub.
     hub_targets = {}
     for cfg in lang_configs:
         hub_targets[cfg.name + ".tar.gz"] = "@%s//:archive" % _lang_repo_name(cfg.name)
+        hub_targets[cfg.name + "-srcs"] = "@%s//:srcs" % _lang_repo_name(cfg.name)
+        hub_targets[cfg.name + "-book"] = "@%s//:book" % _lang_repo_name(cfg.name)
 
     hub_repo(
         name = "backdated_sources",

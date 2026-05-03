@@ -197,7 +197,7 @@
   "moduleExtensions": {
     "//:backdated_sources.bzl%backdated_sources": {
       "general": {
-        "bzlTransitiveDigest": "AQZNSjaff6dkBufudCBiv9UK3HI0k44NKB3AtBZ2plY=",
+        "bzlTransitiveDigest": "fYyEYrsjR8Srl0Ybau2LdC22G0BI6uJ4S8384fYl/Wk=",
         "usagesDigest": "FKj35fx8vRAKFvZs7cKPrME29W5uI7IlDTst5RqLBpw=",
         "recordedInputs": [
           "FILE:@@//po/ar.po 00ef4d3e6f19ca5e07745748afc23b0752d1eb89d3d9a3dc32e0488818cf1607",
@@ -334,133 +334,133 @@
           "lang_en": {
             "repoRuleId": "@@//:backdated_sources.bzl%alias_repo",
             "attributes": {
-              "actual_archive": "@repo_head//:archive"
+              "actual_repo": "@repo_head"
             }
           },
           "lang_ar": {
             "repoRuleId": "@@//:backdated_sources.bzl%alias_repo",
             "attributes": {
-              "actual_archive": "@repo_550cc39ee4c6//:archive"
+              "actual_repo": "@repo_550cc39ee4c6"
             }
           },
           "lang_bn": {
             "repoRuleId": "@@//:backdated_sources.bzl%alias_repo",
             "attributes": {
-              "actual_archive": "@repo_646605edf379//:archive"
+              "actual_repo": "@repo_646605edf379"
             }
           },
           "lang_da": {
             "repoRuleId": "@@//:backdated_sources.bzl%alias_repo",
             "attributes": {
-              "actual_archive": "@repo_dd48150ce26a//:archive"
+              "actual_repo": "@repo_dd48150ce26a"
             }
           },
           "lang_de": {
             "repoRuleId": "@@//:backdated_sources.bzl%alias_repo",
             "attributes": {
-              "actual_archive": "@repo_c04d2860e8d9//:archive"
+              "actual_repo": "@repo_c04d2860e8d9"
             }
           },
           "lang_el": {
             "repoRuleId": "@@//:backdated_sources.bzl%alias_repo",
             "attributes": {
-              "actual_archive": "@repo_dd48150ce26a//:archive"
+              "actual_repo": "@repo_dd48150ce26a"
             }
           },
           "lang_es": {
             "repoRuleId": "@@//:backdated_sources.bzl%alias_repo",
             "attributes": {
-              "actual_archive": "@repo_d49e86d927b6//:archive"
+              "actual_repo": "@repo_d49e86d927b6"
             }
           },
           "lang_fa": {
             "repoRuleId": "@@//:backdated_sources.bzl%alias_repo",
             "attributes": {
-              "actual_archive": "@repo_1f1a7708af97//:archive"
+              "actual_repo": "@repo_1f1a7708af97"
             }
           },
           "lang_fr": {
             "repoRuleId": "@@//:backdated_sources.bzl%alias_repo",
             "attributes": {
-              "actual_archive": "@repo_b40857f6ddcf//:archive"
+              "actual_repo": "@repo_b40857f6ddcf"
             }
           },
           "lang_id": {
             "repoRuleId": "@@//:backdated_sources.bzl%alias_repo",
             "attributes": {
-              "actual_archive": "@repo_dd48150ce26a//:archive"
+              "actual_repo": "@repo_dd48150ce26a"
             }
           },
           "lang_it": {
             "repoRuleId": "@@//:backdated_sources.bzl%alias_repo",
             "attributes": {
-              "actual_archive": "@repo_ca93a2675844//:archive"
+              "actual_repo": "@repo_ca93a2675844"
             }
           },
           "lang_ja": {
             "repoRuleId": "@@//:backdated_sources.bzl%alias_repo",
             "attributes": {
-              "actual_archive": "@repo_1262da8d770e//:archive"
+              "actual_repo": "@repo_1262da8d770e"
             }
           },
           "lang_ko": {
             "repoRuleId": "@@//:backdated_sources.bzl%alias_repo",
             "attributes": {
-              "actual_archive": "@repo_4b27e28e7f83//:archive"
+              "actual_repo": "@repo_4b27e28e7f83"
             }
           },
           "lang_pl": {
             "repoRuleId": "@@//:backdated_sources.bzl%alias_repo",
             "attributes": {
-              "actual_archive": "@repo_dd48150ce26a//:archive"
+              "actual_repo": "@repo_dd48150ce26a"
             }
           },
           "lang_pt_BR": {
             "repoRuleId": "@@//:backdated_sources.bzl%alias_repo",
             "attributes": {
-              "actual_archive": "@repo_550cc39ee4c6//:archive"
+              "actual_repo": "@repo_550cc39ee4c6"
             }
           },
           "lang_ro": {
             "repoRuleId": "@@//:backdated_sources.bzl%alias_repo",
             "attributes": {
-              "actual_archive": "@repo_f976ca88c718//:archive"
+              "actual_repo": "@repo_f976ca88c718"
             }
           },
           "lang_ru": {
             "repoRuleId": "@@//:backdated_sources.bzl%alias_repo",
             "attributes": {
-              "actual_archive": "@repo_1ebe60fe155f//:archive"
+              "actual_repo": "@repo_1ebe60fe155f"
             }
           },
           "lang_tr": {
             "repoRuleId": "@@//:backdated_sources.bzl%alias_repo",
             "attributes": {
-              "actual_archive": "@repo_bb4db3d7b82d//:archive"
+              "actual_repo": "@repo_bb4db3d7b82d"
             }
           },
           "lang_uk": {
             "repoRuleId": "@@//:backdated_sources.bzl%alias_repo",
             "attributes": {
-              "actual_archive": "@repo_e0fa410f93c8//:archive"
+              "actual_repo": "@repo_e0fa410f93c8"
             }
           },
           "lang_vi": {
             "repoRuleId": "@@//:backdated_sources.bzl%alias_repo",
             "attributes": {
-              "actual_archive": "@repo_25d234b7f8cb//:archive"
+              "actual_repo": "@repo_25d234b7f8cb"
             }
           },
           "lang_zh_CN": {
             "repoRuleId": "@@//:backdated_sources.bzl%alias_repo",
             "attributes": {
-              "actual_archive": "@repo_83e25e30ffc7//:archive"
+              "actual_repo": "@repo_83e25e30ffc7"
             }
           },
           "lang_zh_TW": {
             "repoRuleId": "@@//:backdated_sources.bzl%alias_repo",
             "attributes": {
-              "actual_archive": "@repo_e362b44b664d//:archive"
+              "actual_repo": "@repo_e362b44b664d"
             }
           },
           "backdated_sources": {
@@ -468,27 +468,71 @@
             "attributes": {
               "targets": {
                 "en.tar.gz": "@lang_en//:archive",
+                "en-srcs": "@lang_en//:srcs",
+                "en-book": "@lang_en//:book",
                 "ar.tar.gz": "@lang_ar//:archive",
+                "ar-srcs": "@lang_ar//:srcs",
+                "ar-book": "@lang_ar//:book",
                 "bn.tar.gz": "@lang_bn//:archive",
+                "bn-srcs": "@lang_bn//:srcs",
+                "bn-book": "@lang_bn//:book",
                 "da.tar.gz": "@lang_da//:archive",
+                "da-srcs": "@lang_da//:srcs",
+                "da-book": "@lang_da//:book",
                 "de.tar.gz": "@lang_de//:archive",
+                "de-srcs": "@lang_de//:srcs",
+                "de-book": "@lang_de//:book",
                 "el.tar.gz": "@lang_el//:archive",
+                "el-srcs": "@lang_el//:srcs",
+                "el-book": "@lang_el//:book",
                 "es.tar.gz": "@lang_es//:archive",
+                "es-srcs": "@lang_es//:srcs",
+                "es-book": "@lang_es//:book",
                 "fa.tar.gz": "@lang_fa//:archive",
+                "fa-srcs": "@lang_fa//:srcs",
+                "fa-book": "@lang_fa//:book",
                 "fr.tar.gz": "@lang_fr//:archive",
+                "fr-srcs": "@lang_fr//:srcs",
+                "fr-book": "@lang_fr//:book",
                 "id.tar.gz": "@lang_id//:archive",
+                "id-srcs": "@lang_id//:srcs",
+                "id-book": "@lang_id//:book",
                 "it.tar.gz": "@lang_it//:archive",
+                "it-srcs": "@lang_it//:srcs",
+                "it-book": "@lang_it//:book",
                 "ja.tar.gz": "@lang_ja//:archive",
+                "ja-srcs": "@lang_ja//:srcs",
+                "ja-book": "@lang_ja//:book",
                 "ko.tar.gz": "@lang_ko//:archive",
+                "ko-srcs": "@lang_ko//:srcs",
+                "ko-book": "@lang_ko//:book",
                 "pl.tar.gz": "@lang_pl//:archive",
+                "pl-srcs": "@lang_pl//:srcs",
+                "pl-book": "@lang_pl//:book",
                 "pt-BR.tar.gz": "@lang_pt_BR//:archive",
+                "pt-BR-srcs": "@lang_pt_BR//:srcs",
+                "pt-BR-book": "@lang_pt_BR//:book",
                 "ro.tar.gz": "@lang_ro//:archive",
+                "ro-srcs": "@lang_ro//:srcs",
+                "ro-book": "@lang_ro//:book",
                 "ru.tar.gz": "@lang_ru//:archive",
+                "ru-srcs": "@lang_ru//:srcs",
+                "ru-book": "@lang_ru//:book",
                 "tr.tar.gz": "@lang_tr//:archive",
+                "tr-srcs": "@lang_tr//:srcs",
+                "tr-book": "@lang_tr//:book",
                 "uk.tar.gz": "@lang_uk//:archive",
+                "uk-srcs": "@lang_uk//:srcs",
+                "uk-book": "@lang_uk//:book",
                 "vi.tar.gz": "@lang_vi//:archive",
+                "vi-srcs": "@lang_vi//:srcs",
+                "vi-book": "@lang_vi//:book",
                 "zh-CN.tar.gz": "@lang_zh_CN//:archive",
-                "zh-TW.tar.gz": "@lang_zh_TW//:archive"
+                "zh-CN-srcs": "@lang_zh_CN//:srcs",
+                "zh-CN-book": "@lang_zh_CN//:book",
+                "zh-TW.tar.gz": "@lang_zh_TW//:archive",
+                "zh-TW-srcs": "@lang_zh_TW//:srcs",
+                "zh-TW-book": "@lang_zh_TW//:book"
               }
             }
           }

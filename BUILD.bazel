@@ -50,3 +50,13 @@ mdbook(
     book = "book.toml",
     plugins = [":mdbook-plugins"],
 )
+
+mdbook(
+    name = "comprehensive-rust-da",
+    srcs = [
+        ":theme",
+        "@backdated_sources//:da-srcs",
+    ],
+    book = "@backdated_sources//:da-book",
+    plugins = [":mdbook-plugins"],
+)
