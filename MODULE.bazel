@@ -130,4 +130,4 @@ backdated_sources.language(po = "//po:ja.po")
 # backdated_sources.language(po = "//po:zh-TW.po")
 
 # The hub repository provides a central entry point for all back-dated snapshots.
-use_repo(backdated_sources, "backdated_sources", "book_da", "lang_da", "lang_en", "repo_dd48150ce26a")
+use_repo(backdated_sources, "backdated_sources", "lang_da", "lang_en", "lang_ja")
