@@ -6,20 +6,17 @@ module(
 bazel_dep(name = "rules_pkg", version = "1.0.1")
 bazel_dep(name = "rules_rust", version = "0.70.0")
 bazel_dep(name = "rules_rust_mdbook", version = "0.70.0")
+bazel_dep(name = "rules_shell", version = "0.8.0")
 bazel_dep(name = "toml.bzl", version = "0.3.0")
 
-# For https://github.com/bazelbuild/rules_rust/pull/4027
-git_override(
+local_path_override(
     module_name = "rules_rust",
-    commit = "2fd73117cd996410be45259cd95b12c7688226fb",
-    remote = "https://github.com/bazelbuild/rules_rust.git",
+    path = "/home/mg/src/rules_rust",
 )
 
-git_override(
+local_path_override(
     module_name = "rules_rust_mdbook",
-    commit = "2fd73117cd996410be45259cd95b12c7688226fb",
-    remote = "https://github.com/bazelbuild/rules_rust.git",
-    strip_prefix = "extensions/mdbook",
+    path = "/home/mg/src/rules_rust/extensions/mdbook",
 )
 
 rust = use_extension("@rules_rust//rust:extensions.bzl", "rust")
@@ -130,4 +127,4 @@ backdated_sources.language(po = "//po:ja.po")
 # backdated_sources.language(po = "//po:zh-TW.po")
 
 # The hub repository provides a central entry point for all back-dated snapshots.
-use_repo(backdated_sources, "backdated_sources", "lang_da", "lang_en", "lang_ja")
+use_repo(backdated_sources, "backdated_sources", "book_da", "book_ja", "repo_dd48150ce26a")

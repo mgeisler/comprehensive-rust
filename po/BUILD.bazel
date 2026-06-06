@@ -1,4 +1,25 @@
-# This file is required to make the 'po/' directory a Bazel package.
-# This allows the .po files to be referenced as labels (e.g., '//po:da.po').
+load("@rules_shell//shell:sh_test.bzl", "sh_test")
+load("//:languages.bzl", "LANGUAGES")
 
 exports_files(glob(["*.po"]))
+
+EXPECTED_GREETINGS = {
+    "da": "Velkommen til Comprehensive Rust 🦀",
+    "ja": "Comprehensive Rust 🦀 へようこそ",
+}
+
+[
+    sh_test(
+        name = "translation_%s_test" % lang,
+        size = "small",
+        srcs = [":ensure_translated.sh"],
+        args = [
+            "$(rlocationpath //:comprehensive-rust-%s)" % lang,
+            EXPECTED_GREETINGS[lang],
+        ],
+        data = ["//:comprehensive-rust-%s" % lang],
+        use_bash_launcher = True,
+    )
+    for lang in LANGUAGES
+    if lang != "en" and lang in EXPECTED_GREETINGS
+]

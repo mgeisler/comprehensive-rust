@@ -1,0 +1,15 @@
+load("@rules_shell//shell:sh_binary.bzl", "sh_binary")
+
+# Non-hermetic wrapper script called by `mdbook-pandoc`.
+#
+# It sets PATH and HOME before invoking `pandoc` so it can find system
+# tools like `rsvg-convert` and `lualatex`.
+#
+# This hack opens up the sandbox established by `mdbook` from
+# `rules_rust`. It can be removed if we pass in a TeXLive installation
+# to the sandbox.
+sh_binary(
+    name = "pandoc",
+    srcs = ["pandoc.sh"],
+    visibility = ["//visibility:public"],
+)

@@ -15,15 +15,14 @@ load("@toml.bzl", "toml")
 
 BACKDATED_PATHS = ["src/", "third_party/", "book.toml"]
 
-def _lang_repo_impl(repository_ctx):
+def _git_archive_repo_impl(repository_ctx):
     """
-    A Repository Rule that creates a complete, backdated workspace for a language.
-    It extracts the sources from git and modifies the book.toml in place.
+    A Repository Rule that extracts specific paths from a git commit.
     """
     commit = repository_ctx.attr.commit
-    lang = repository_ctx.attr.lang
 
-    # 1. Extract the git archive.
+    # Use `git archive` to create a tarball of the specific files at
+    # the given commit.
     archive = repository_ctx.path("archive.tar.gz")
     result = repository_ctx.execute(
         ["git", "-C", repository_ctx.workspace_root, "archive"] +
@@ -32,35 +31,21 @@ def _lang_repo_impl(repository_ctx):
     if result.return_code != 0:
         fail("Failed to run git archive for commit {}: {}".format(commit, result.stderr))
 
+    # Extract the archive immediately so the files are directly
+    # accessible.
     repository_ctx.extract(archive)
     repository_ctx.delete(archive)
+
+    # Remove the stray third_party BUILD file. It creates package
+    # boundaries that prevent the top-level glob from seeing all
+    # files.
     repository_ctx.delete("third_party/cxx/blobstore/BUILD")
 
-    # Symlink the current theme from the workspace.
-    theme_src = repository_ctx.path(repository_ctx.workspace_root).get_child("theme")
-    repository_ctx.symlink(theme_src, "theme")
-
-    # 2. Modify the book.toml file.
-    if lang != "en":
-        book_path = repository_ctx.path("book.toml")
-        book = toml.decode(repository_ctx.read(book_path))
-
-        book["book"]["language"] = lang
-        book["output"]["html"]["site-url"] = "/comprehensive-rust/{}/".format(lang)
-        book["output"]["html"].pop("redirect", None)
-
-        # Disable pandoc as it's not available in the hermetic Bazel build.
-        book.setdefault("output", {}) \
-            .setdefault("pandoc", {}) \
-            .update(disabled = True, optional = True)
-
-        repository_ctx.file("book.toml", toml.encode(book), executable = False)
-
-    # 3. Generate a BUILD.bazel that provides an aggregate interface.
+    # Generate a BUILD.bazel that provides an aggregate interface.
     repository_ctx.file("BUILD.bazel", """
 filegroup(
-    name = "srcs",
-    srcs = glob(["src/**", "third_party/**", "theme/**"]),
+    name = "content",
+    srcs = glob(["src/**", "third_party/**"]),
     visibility = ["//visibility:public"],
 )
 
@@ -70,13 +55,70 @@ exports_files(
 )
 """, executable = False)
 
-lang_repo = repository_rule(
-    implementation = _lang_repo_impl,
+git_archive_repo = repository_rule(
+    implementation = _git_archive_repo_impl,
     attrs = {
         "commit": attr.string(mandatory = True, doc = "The Git commit to archive."),
-        "lang": attr.string(mandatory = True, doc = "The language for the book."),
     },
-    doc = "Creates a backdated repository for a specific language.",
+    doc = "Creates a repository by archiving specific paths from a local Git commit.",
+)
+
+def _book_repo_impl(repository_ctx):
+    """
+    A Repository Rule that creates a modified book.toml for a language.
+    """
+    lang = repository_ctx.attr.lang
+    book_path = repository_ctx.path(repository_ctx.attr.book)
+
+    book = toml.decode(repository_ctx.read(book_path))
+
+    # Use Rust edition and settings from the backdated commit to compile old snippets correctly.
+    if repository_ctx.attr.pristine_book:
+        pristine_path = repository_ctx.path(repository_ctx.attr.pristine_book)
+        pristine = toml.decode(repository_ctx.read(pristine_path))
+        if "rust" in pristine:
+            book["rust"] = pristine["rust"]
+
+    # Set language and adjust site URL. Clear the redirects since they
+    # are in sync with the source files, not the translation.
+    book["book"]["language"] = lang
+    book["output"]["html"]["site-url"] = "/comprehensive-rust/{}/".format(lang)
+    book["output"]["html"].pop("redirect", None)
+
+    # Disable linkcheck for translations.
+    if "output" in book:
+        book["output"].pop("linkcheck", None)
+        book["output"].pop("linkcheck2", None)
+
+    # Point `mdbook-i18n-gettext` to the PO file in the workdir root
+    # and ensure that `mdbook serve` notices changes to the PO file.
+    gettext = book.setdefault("preprocessor", {}).setdefault("gettext", {})
+    gettext["po-dir"] = "."
+    build = book.setdefault("build", {})
+    build["extra-watch-dirs"] = ["."]
+
+    if repository_ctx.which("pandoc"):
+        print("Found `pandoc`, enabling mdbook-pandoc")
+        book["output"]["pandoc"]["disabled"] = False
+    else:
+        print("No `pandoc` found, disabling mdbook-pandoc")
+
+    repository_ctx.file("book.toml", toml.encode(book), executable = False)
+    repository_ctx.file("BUILD.bazel", """
+exports_files(
+    ["book.toml"],
+    visibility = ["//visibility:public"],
+)
+""", executable = False)
+
+book_repo = repository_rule(
+    implementation = _book_repo_impl,
+    attrs = {
+        "lang": attr.string(mandatory = True, doc = "The language for the book."),
+        "book": attr.label(mandatory = True, doc = "Label of the book.toml file."),
+        "pristine_book": attr.label(mandatory = False, doc = "Label of the backdated book.toml file."),
+    },
+    doc = "Creates a repository with a modified book.toml.",
 )
 
 def _hub_repo_impl(repository_ctx):
@@ -121,20 +163,23 @@ def _lang_repo_name(lang):
 def _backdated_sources_extension_impl(module_ctx):
     """
     The Module Extension that orchestrates the creation of all back-dated repositories.
-    It scans the project's .po files, determines the correct git commit for each,
-    and instantiates the necessary repositories.
     """
 
     # English is always at HEAD.
     lang_configs = [struct(name = "en", commit = "HEAD")]
+    repos = {"HEAD": "repo_head"}
 
     for mod in module_ctx.modules:
         for tag in mod.tags.language:
             po = module_ctx.path(tag.po)
             name = po.basename.removesuffix(".po")
+
+            # Skip English if registered via tag, we already added it.
+            if name == "en":
+                continue
+
             date = _extract_date(module_ctx, po)
 
-            # Resolve the POT-Creation-Date to the nearest preceding Git commit.
             rev_list = module_ctx.execute(
                 ["git", "-C", po.dirname, "rev-list", "-n", "1", "--before", date, "HEAD"],
             )
@@ -143,7 +188,6 @@ def _backdated_sources_extension_impl(module_ctx):
 
             commit = rev_list.stdout.strip()
             if not commit:
-                print("Warning: could not parse commit for {}, defaulting to HEAD".format(date))
                 rev_parse = module_ctx.execute(
                     ["git", "-C", po.dirname, "rev-parse", "HEAD"],
                 )
@@ -154,19 +198,40 @@ def _backdated_sources_extension_impl(module_ctx):
                 commit = commit,
             ))
 
-    # Instantiate a complete repository for each language.
-    for cfg in lang_configs:
-        lang_repo(
-            name = _lang_repo_name(cfg.name),
-            commit = cfg.commit,
-            lang = cfg.name,
+            if commit not in repos:
+                repos[commit] = "repo_" + commit[:12]
+
+    # Instantiate the physical data repositories.
+    for commit, name in repos.items():
+        git_archive_repo(
+            name = name,
+            commit = commit,
         )
+
+    # Instantiate language-specific configuration repositories.
+    for cfg in lang_configs:
+        if cfg.name != "en":
+            pristine_book = "@{repo}//:book.toml".format(repo = repos[cfg.commit])
+            book_repo(
+                name = "book_%s" % cfg.name,
+                lang = cfg.name,
+                book = "@@//:book.toml",
+                pristine_book = pristine_book,
+            )
 
     # Instantiate the central @backdated_sources hub.
     hub_targets = {}
     for cfg in lang_configs:
-        hub_targets[cfg.name + "_srcs"] = "@%s//:srcs" % _lang_repo_name(cfg.name)
-        hub_targets[cfg.name + "_book"] = "@%s//:book.toml" % _lang_repo_name(cfg.name)
+        if cfg.name == "en":
+            # For English, point directly to the local workspace files.
+            # This ensures that the mdbook_server can run in-place,
+            # which is necessary for plugins like linkcheck.
+            hub_targets["en_content"] = "@@//:content"
+            hub_targets["en_book"] = "@@//:book.toml"
+        else:
+            repo_name = repos[cfg.commit]
+            hub_targets[cfg.name + "_content"] = "@%s//:content" % repo_name
+            hub_targets[cfg.name + "_book"] = "@book_%s//:book.toml" % cfg.name
 
     hub_repo(
         name = "backdated_sources",

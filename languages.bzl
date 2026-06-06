@@ -14,7 +14,7 @@ LANGUAGES = [
     #    "fr",
     #    "id",
     #    "it",
-    "ja",
+    #"ja",
     #    "ko",
     #    "pl",
     #    "pt-BR",
@@ -24,5 +24,5 @@ LANGUAGES = [
     #    "uk",
     #    "vi",
     #    "zh-CN",
-    "zh-TW",
+    #"zh-TW",
 ]

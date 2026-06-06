@@ -2,6 +2,11 @@ load("@rules_rust_mdbook//:defs.bzl", "mdbook", "mdbook_server")
 load("//:languages.bzl", "LANGUAGES")
 load("//:tool_hub.bzl", "tool_hub")
 
+exports_files(
+    ["book.toml"],
+    visibility = ["//visibility:public"],
+)
+
 tool_hub(
     name = "mdbook-plugins",
     tools = {
@@ -12,23 +17,80 @@ tool_hub(
         "@mdbook_plugins//:mdbook-pandoc__mdbook-pandoc": "mdbook-pandoc",
         "@svgbob_plugin//:mdbook-svgbob__mdbook-svgbob": "mdbook-svgbob",
         "@mdbook_plugins//:mdbook-linkcheck2__mdbook-linkcheck2": "mdbook-linkcheck2",
+        "//host_tools:pandoc": "pandoc",
     },
+)
+
+filegroup(
+    name = "content",
+    srcs = glob([
+        "src/**/*.md",
+        "src/**/*.rs",
+    ]),
+    visibility = ["//visibility:public"],
+)
+
+filegroup(
+    name = "theme",
+    srcs = glob(["theme/**"]),
+    visibility = ["//visibility:public"],
 )
 
 [
     mdbook(
         name = "comprehensive-rust-%s" % lang,
-        srcs = ["@backdated_sources//:%s_srcs" % lang],
+        srcs = [
+            "@backdated_sources//:%s_content" % lang,
+            "//:theme",
+        ] + (["//po:%s.po" % lang] if lang != "en" else []),
         book = "@backdated_sources//:%s_book" % lang,
         plugins = [":mdbook-plugins"],
+        tags = ["no-sandbox"],
+        visibility = ["//visibility:public"],
     )
     for lang in LANGUAGES
 ]
 
-filegroup(
-    name = "theme",
-    srcs = glob([
-        "theme/**/*.css",
-        "theme/**/*.js",
-    ]),
+[
+    mdbook_server(
+        name = "live-%s" % lang,
+        book = "comprehensive-rust-%s" % lang,
+    )
+    for lang in LANGUAGES
+]
+
+genrule(
+    name = "website",
+    srcs = [
+        "//:comprehensive-rust-%s" % lang
+        for lang in LANGUAGES
+    ],
+    outs = ["website.tar.gz"],
+    cmd = """
+        STAGING_DIR=$$(mktemp -d)
+
+        # Stage English content
+        cp -r --dereference $(location //:comprehensive-rust-en)/html/* $$STAGING_DIR/
+        cp $(location //:comprehensive-rust-en)/pandoc/pdf/comprehensive-rust.pdf $$STAGING_DIR/
+        pushd $(location //:comprehensive-rust-en)/exerciser
+        zip -r $$STAGING_DIR/comprehensive-rust-exercises.zip comprehensive-rust-exercises
+        popd
+    """ + "\n".join([
+        """
+        # Stage {lang} translation
+        mkdir -p $$STAGING_DIR/{lang}
+        pushd $$STAGING_DIR/{lang}
+        cp -r --dereference $(location //:comprehensive-rust-{lang})/html/* .
+        cp $(location //:comprehensive-rust-{lang})/pandoc/pdf/comprehensive-rust.pdf .
+        pushd exerciser
+(cd $(location //:comprehensive-rust-{lang})/exerciser && zip -r $$STAGING_DIR/{lang}/comprehensive-rust-exercises.zip comprehensive-rust-exercises)
+        popd
+        """.format(lang = lang)
+        for lang in LANGUAGES
+        if lang != "en"
+    ]) + """
+        tar -C $$STAGING_DIR -czf $@ .
+        rm -rf $$STAGING_DIR
+    """,
+    visibility = ["//visibility:public"],
 )

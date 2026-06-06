@@ -177,7 +177,8 @@
     "https://bcr.bazel.build/modules/rules_shell/0.3.0/MODULE.bazel": "de4402cd12f4cc8fda2354fce179fdb068c0b9ca1ec2d2b17b3e21b24c1a937b",
     "https://bcr.bazel.build/modules/rules_shell/0.4.1/MODULE.bazel": "00e501db01bbf4e3e1dd1595959092c2fadf2087b2852d3f553b5370f5633592",
     "https://bcr.bazel.build/modules/rules_shell/0.6.1/MODULE.bazel": "72e76b0eea4e81611ef5452aa82b3da34caca0c8b7b5c0c9584338aa93bae26b",
-    "https://bcr.bazel.build/modules/rules_shell/0.6.1/source.json": "20ec05cd5e592055e214b2da8ccb283c7f2a421ea0dc2acbf1aa792e11c03d0c",
+    "https://bcr.bazel.build/modules/rules_shell/0.8.0/MODULE.bazel": "f6a89f1d6a669a26f28fe814503857055d76306b79cfc11d12399af08d0b80ae",
+    "https://bcr.bazel.build/modules/rules_shell/0.8.0/source.json": "eb53cc815bc503c6683c5fe12d943f98883f81fc22f51403ec8a95610cba4195",
     "https://bcr.bazel.build/modules/rules_swift/1.16.0/MODULE.bazel": "4a09f199545a60d09895e8281362b1ff3bb08bbde69c6fc87aff5b92fcc916ca",
     "https://bcr.bazel.build/modules/rules_swift/2.1.1/MODULE.bazel": "494900a80f944fc7aa61500c2073d9729dff0b764f0e89b824eb746959bc1046",
     "https://bcr.bazel.build/modules/rules_swift/2.4.0/MODULE.bazel": "1639617eb1ede28d774d967a738b4a68b0accb40650beadb57c21846beab5efd",
@@ -203,7 +204,7 @@
   "moduleExtensions": {
     "//:backdated_sources.bzl%backdated_sources": {
       "general": {
-        "bzlTransitiveDigest": "g9YvNVp35sfVkXbJNVHJZIkuL28Z6T3pF1Yy7yfG+T4=",
+        "bzlTransitiveDigest": "KCvAxH+dq0ekyjfIsp1SiSza2sz23RLDPV3LMcWGPZw=",
         "usagesDigest": "k66d1fXudRa9OyeKTIyboYxOrTQmThMmTeOOB0+QfIM=",
         "recordedInputs": [
           "REPO_MAPPING:,toml.bzl toml.bzl+",
@@ -211,37 +212,50 @@
           "FILE:@@//po/ja.po e500684b5569b53dcad6d4ae3b5e37843017deaf1d25792540d5b5a8a3b4aa11"
         ],
         "generatedRepoSpecs": {
-          "lang_en": {
-            "repoRuleId": "@@//:backdated_sources.bzl%lang_repo",
+          "repo_head": {
+            "repoRuleId": "@@//:backdated_sources.bzl%git_archive_repo",
             "attributes": {
-              "commit": "HEAD",
-              "lang": "en"
+              "commit": "HEAD"
             }
           },
-          "lang_da": {
-            "repoRuleId": "@@//:backdated_sources.bzl%lang_repo",
+          "repo_dd48150ce26a": {
+            "repoRuleId": "@@//:backdated_sources.bzl%git_archive_repo",
             "attributes": {
-              "commit": "dd48150ce26a5ae5b7014d3cb7e9222168720c60",
-              "lang": "da"
+              "commit": "dd48150ce26a5ae5b7014d3cb7e9222168720c60"
             }
           },
-          "lang_ja": {
-            "repoRuleId": "@@//:backdated_sources.bzl%lang_repo",
+          "repo_1262da8d770e": {
+            "repoRuleId": "@@//:backdated_sources.bzl%git_archive_repo",
             "attributes": {
-              "commit": "1262da8d770e58a6b93141474160d6dbaeb96d65",
-              "lang": "ja"
+              "commit": "1262da8d770e58a6b93141474160d6dbaeb96d65"
+            }
+          },
+          "book_da": {
+            "repoRuleId": "@@//:backdated_sources.bzl%book_repo",
+            "attributes": {
+              "lang": "da",
+              "book": "@@//:book.toml",
+              "pristine_book": "@@+backdated_sources+repo_dd48150ce26a//:book.toml"
+            }
+          },
+          "book_ja": {
+            "repoRuleId": "@@//:backdated_sources.bzl%book_repo",
+            "attributes": {
+              "lang": "ja",
+              "book": "@@//:book.toml",
+              "pristine_book": "@@+backdated_sources+repo_1262da8d770e//:book.toml"
             }
           },
           "backdated_sources": {
             "repoRuleId": "@@//:backdated_sources.bzl%hub_repo",
             "attributes": {
               "targets": {
-                "en_srcs": "@lang_en//:srcs",
-                "en_book": "@lang_en//:book.toml",
-                "da_srcs": "@lang_da//:srcs",
-                "da_book": "@lang_da//:book.toml",
-                "ja_srcs": "@lang_ja//:srcs",
-                "ja_book": "@lang_ja//:book.toml"
+                "en_content": "'@@//:content'",
+                "en_book": "'@@//:book.toml'",
+                "da_content": "@repo_dd48150ce26a//:content",
+                "da_book": "@book_da//:book.toml",
+                "ja_content": "@repo_1262da8d770e//:content",
+                "ja_book": "@book_ja//:book.toml"
               }
             }
           }
@@ -14210,7 +14224,7 @@
     },
     "@@rules_rust+//crate_universe/private:internal_extensions.bzl%cu_nr": {
       "general": {
-        "bzlTransitiveDigest": "dhDz4UXw68BXhHs9Fswk/Kqs5uYw6Qs+SwQQna8T+qc=",
+        "bzlTransitiveDigest": "dbN53JInDF83G/3Omk65PfKxONcqtONYvMlN7Y7nZiQ=",
         "usagesDigest": "w6DeRbiDSXRVPZPJF6BTEEe4fMh1OiL8grDVrOA0M98=",
         "recordedInputs": [
           "REPO_MAPPING:bazel_features+,bazel_features_globals bazel_features++version_extension+bazel_features_globals",
